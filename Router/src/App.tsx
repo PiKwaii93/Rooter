@@ -18,7 +18,7 @@ import NotFound from './Component/NotFound';
 import NeedAuth from './Component/NeedAuth';
 import NotAuthorized from './Component/NotAuthorized';
 import Logout from './Component/Logout';
-import Profil from './Profil';
+import Profil from './Component/Profil';
 import ConnexionForm from './Component/ConnexionForm';
 
 export default function App() {
@@ -54,7 +54,6 @@ export default function App() {
                                 
                             }}>
                                 <li><Link to="/">Home</Link></li>
-                                <li><Link to="*">*</Link></li>
                                 <li><Link to="/profil">Profil</Link></li>
                                 <li><Link to="/autre">Autre</Link></li>
                                 <ul>
@@ -67,9 +66,11 @@ export default function App() {
                             <Route path="/" element={<Maison/>}/>
 
                             <Route path="*" element={<NotFound/>}/>
-
-                            <Route path="/profil" element={<Profil user={user}/>}/>
-
+                            
+                            <Route path="/profil" element={
+                            <NeedAuth user={user}>
+                                <Profil user={user}/>
+                            </NeedAuth>}/>
 
 {/*                             <Route path=":wildcard" element={<WildCard/>}/>
  */}
@@ -83,7 +84,7 @@ export default function App() {
                         </Routes>
                         <Routes>
 
-                            <Route path='*' element={<ConnexionForm setUser={setUser}/>}/>
+                            <Route path='*' element={<ConnexionForm user={user} setUser={setUser}/>}/>
 
                         </Routes>
                     </div>

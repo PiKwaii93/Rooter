@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom"
 
-export default function ConnexionForm({setUser}) {
+export default function ConnexionForm({user, setUser}) {
 
     const [value, setValue] = useState<string>('');
 
@@ -24,14 +24,20 @@ export default function ConnexionForm({setUser}) {
         }
         navigate(from, {replace: true});
     }
-
-    return(
-        <div>
-            <form style={{display: 'flex', flexDirection: 'column', alignItems: 'center',}} onSubmit={handleSubmit}>
-                <label for="name">Veuillez entrer votre nom</label>
-                <input type='text' name="name" value={value} onChange={handleChange}/>
-                <button type="submit"> Envoyer </button>
-            </form>
-        </div>
-    )
+    if(user){
+        return(
+            <div></div>
+        )
+    }else{
+        return(
+            <div>
+                <form style={{display: 'flex', flexDirection: 'column', alignItems: 'center',}} onSubmit={handleSubmit}>
+                    <label for="name">Veuillez entrer votre nom</label>
+                    <input type='text' name="name" value={value} onChange={handleChange}/>
+                    <button type="submit"> Envoyer </button>
+                </form>
+            </div>
+        )
+    }
+    
 }

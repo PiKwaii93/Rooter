@@ -1,7 +1,7 @@
 
 export default function Profil({user}) {
 
-
+    if(user){
         return(
             <div>
                 <p>
@@ -10,5 +10,7 @@ export default function Profil({user}) {
                 </p>
             </div>
         )
+    }
+
 
 }
